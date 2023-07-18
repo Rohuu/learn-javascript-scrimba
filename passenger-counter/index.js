@@ -1,4 +1,5 @@
 let countEl = document.getElementById("count-passengers");
+let prevEntEl = document.getElementById("prev-ent");
 let welcomeEl = document.getElementById("welcome-el");
 let name = "Rohit";
 let greetings = "Welcome back, ";
@@ -15,6 +16,10 @@ function decrement() {
     countEl.innerText = count;
 }
 
+
 function save() {
-    console.log(count);
+    let valDash = count + " - ";
+    prevEntEl.textContent += valDash;
+    countEl.innerText = 0;
+    count = 0;
 }
