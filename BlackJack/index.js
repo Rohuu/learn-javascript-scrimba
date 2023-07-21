@@ -1,13 +1,46 @@
-let firstCard = 10;
-let secondCard = 4;
-let sum = firstCard + secondCard;
+let cards = [];
+let sum = 0;
 let hasBlackJack = false;
-let isAlive = true;
+let isAlive = false;
 let messageEl = document.getElementById("message-el");
 let sumEl = document.getElementById("sum-el");
 let cardsEl = document.getElementById("cards-el");
+let playerEl = document.getElementById("player-el");
+
+let player = {
+    name: "Rohit",
+    chips: 145
+}
+
+function getRandomCard() {
+    let randomNum = Math.floor(Math.random() * 13) + 1;
+    if (randomNum > 10) {
+        return 10;
+    }
+    else if (randomNum === 1) {
+        return 11;
+    }
+    else {
+        return randomNum;
+    }
+}
 
 function startGame() {
+    isAlive = true;
+    let firstCard = getRandomCard();
+    let secondCard = getRandomCard();
+    sum = firstCard + secondCard;
+    cards = [firstCard, secondCard];
+    renderGame();
+}
+
+function renderGame() {
+    cardsEl.textContent = "Cards: ";
+
+    for (let i = 0; i < cards.length; i++) {
+        cardsEl.textContent += cards[i] + " ";
+    }
+
     if (sum <= 20) {
         message = "Do you want to draw a new card?";
     }
@@ -21,13 +54,17 @@ function startGame() {
     }
     sumEl.textContent = "Sum: " + sum;
     messageEl.textContent = message;
-    cardsEl.textContent = "Cards: " + firstCard + ", " + secondCard;
 }
 
 function newCard() {
-    let newCard = 7;
-    sum = sum + newCard;
-    // sumEl.textContent = "Sum: " + newSum;
-    // cardsEl.textContent = "Cards: " + firstCard + ", " + secondCard + ", " + newCard;
-    startGame();
+    if (hasBlackJack === false && isAlive === true) {
+        let newCard = getRandomCard();
+        sum = sum + newCard;
+        cards.push(newCard);
+        renderGame();
+    }
 }
+
+playerEl.textContent = player.name + ": $ " + player.chips;
+
+
