@@ -1,8 +1,13 @@
-function saveLead(){
-    console.log("clicked by onclick");
-}
+myLeads=["jhd","jfasfjh","fajkbfasjkkbj"]; 
+const inputBtn=document.getElementById("input-btn");
+const inputEl=document.getElementById("input-el");
+const ulEl=document.getElementById("ul-el"); 
 
-let inputBtn=document.getElementById("input-btn");
 inputBtn.addEventListener("click", function(){
-    console.log("click by addEventListener");
-})
+  myLeads.push(inputEl.value);
+  console.log(myLeads);  
+});
+
+for(let i=0;i< myLeads.length;i++){
+    ulEl.innerHTML += "<li>" +myLeads[i]+ "</li>";
+}
