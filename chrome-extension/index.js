@@ -12,8 +12,11 @@ inputBtn.addEventListener("click", function(){
 function renderLeads(){
   listItems="";
   for(let i=0;i< myLeads.length;i++){
-      listItems += "<li> <a href='https://www.google.com/' target='_blank'>" + myLeads[i]+ "</a> </li>";  
+      // listItems += "<li> <a href='https://www.google.com/' target='_blank'>" + myLeads[i]+ "</a> </li>";  
+      // or we can use back tick string and then inside that write normal HTML
+      listItems += `<li> 
+                        <a href="https://www.google.com/" target="_blank">  ${myLeads[i]} </a>
+                    </li>`;  
   }
-
   ulEl.innerHTML=listItems;
 }
