@@ -1,21 +1,19 @@
-myLeads=["jhd","jfasfjh","fajkbfasjkkbj"]; 
+myLeads=[]; 
 const inputBtn=document.getElementById("input-btn");
-const inputEl=document.getElementById("input-el");
+const inputEl=document.getElementById("input-el"); 
 const ulEl=document.getElementById("ul-el"); 
 
 inputBtn.addEventListener("click", function(){
   myLeads.push(inputEl.value);
-  console.log(myLeads);  
+  renderLeads();
+  inputEl.value="";
 });
 
-for(let i=0;i< myLeads.length;i++){
-    // ulEl.innerHTML += "<li>" +myLeads[i]+ "</li>";  
-    // there is an alternative for this innerHTML which has 3 steps:
-    // 1. creating element (here li element)  
-    // 2. set text content 
-    // 3. append to ul  
+function renderLeads(){
+  listItems="";
+  for(let i=0;i< myLeads.length;i++){
+      listItems += "<li> <a href='https://www.google.com/' target='_blank'>" + myLeads[i]+ "</a> </li>";  
+  }
 
-    let liEl= document.createElement("li");
-    liEl.textContent=myLeads[i];
-    ulEl.append(liEl);
+  ulEl.innerHTML=listItems;
 }
