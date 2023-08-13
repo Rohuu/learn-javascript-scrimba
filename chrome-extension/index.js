@@ -7,31 +7,31 @@ const deleteBtn=document.getElementById("delete-btn");
 let leadsFromLocalStorage= JSON.parse(localStorage.getItem("myLeads"));
 if(leadsFromLocalStorage){
   myLeads=leadsFromLocalStorage;
-  renderLeads(); 
+  render(myLeads); 
 }
 
+function render(leads){
+  listItems="";
+  for(let i=0;i< leads.length;i++){ 
+      // listItems += "<li> <a href='https://www.google.com/' target='_blank'>" + myLeads[i]+ "</a> </li>";  
+      // or we can use back tick string and then inside that write normal HTML
+      listItems += `<li> 
+                        <a href="https://www.google.com/" target="_blank">  ${leads[i]} </a>
+                    </li>`;  
+  }
+  ulEl.innerHTML=listItems;
+} 
+
 deleteBtn.addEventListener("dblclick", function(){
-  console.log("double clicked!");
   localStorage.clear();
   myLeads=[];
-  renderLeads();
+  render(myLeads);
 });
 
 inputBtn.addEventListener("click", function(){
   myLeads.push(inputEl.value);
   inputEl.value="";
   localStorage.setItem("myLeads",JSON.stringify(myLeads));
-  renderLeads();
+  render(myLeads);
 });
 
-function renderLeads(){
-  listItems="";
-  for(let i=0;i< myLeads.length;i++){ 
-      // listItems += "<li> <a href='https://www.google.com/' target='_blank'>" + myLeads[i]+ "</a> </li>";  
-      // or we can use back tick string and then inside that write normal HTML
-      listItems += `<li> 
-                        <a href="https://www.google.com/" target="_blank">  ${myLeads[i]} </a>
-                    </li>`;  
-  }
-  ulEl.innerHTML=listItems;
-} 
